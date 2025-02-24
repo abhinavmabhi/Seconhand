@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- tailwind  -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- AOS  -->
+    <script>
+        AOS.init();
+    </script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+    
+
+
+</head>
+
+<body>
+    <div class="bg-gray-100 relative overflow-hidden">
+
+        <div class="flex bg-gray-200">
+            <!-- Sidebar -->
+            <div class="fixed top-0 left-0 bg-gray-700 text-white w-56 h-full overflow-y-auto transition-transform transform -translate-x-full ease-in-out duration-1000 z-50"
+                id="sidebar">
+                <!-- Sidebar Content -->
+                <div class="p-4">
+                    <h1 class="text-2xl font-semibold" style="font-style: italic;">BigDeals</h1>
+
+                    <hr>
+                    <ul class="mt-4">
+                        <li class="mb-2"><a href="" class="block hover:text-indigo-400">Home</a>
+                        </li>
+                        <li class="mb-2"><a href="" class="block hover:text-indigo-400">Bookings</a>
+                        </li>
+                        
+                    </ul>
+                  
+                </div>
+            </div>
+
+            <!-- Content -->
+            <div class="flex-1 flex flex-col overflow-hidden">
+
+
+                <!-- Navbar -->
+                <div class="bg-gray-800 text-white shadow">
+                    <div class="container mx-auto">
+                        <div class="flex justify-between items-center py-4 px-2">
+                            <h1 class="text-xl font-semibold" style="font-style: italic;">BigDeals</h1>
+
+
+    
+
+                         
+
+                            <!-- search box  -->
+
+
+
+                            <div class="flex justify-center">
+                                <div class="relative">
+                                    <!-- Search Input -->
+                                    <form action="">
+                                        <input type="text" name="search-text"
+                                            class="w-60 text-black px-4 py-2 border border-gray-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                            placeholder="Search for Vehicles...">
+
+                                        <!-- Search Button -->
+                                        <button class="px-4 py-2 bg-blue-500 text-white rounded-r-lg hover:bg-blue-600">
+                                            Search
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+
+
+
+                            <button class="text-gray-500 hover:text-gray-600" id="open-sidebar">
+                                <svg class="w-12 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M4 6h16M4 12h16M4 18h16"></path>
+                                </svg>
+                            </button>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- filter -->
+
+                
+                <div class="container filters flex flex-wrap justify-start items-center gap-6 p-6 bg-white shadow-md rounded-lg">
+                    <!-- Category Filter -->
+                    <form method="GET">
+                        <label for="category" class="block text-sm font-medium text-gray-700 mb-1">Type</label>
+                        <select name="category" id="category" class="w-48 px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500" onchange="this.form.submit()">
+                            <option value="all" {% if selected_category == 'all' %}selected{% endif %}>All Categories</option>
+                            {% for category in categories %}
+                                <option value="{{ category.name }}" {% if selected_category == category.name %}selected{% endif %}>
+                                    {{ category.name }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </form>
+                
+                    <!-- Type Filter -->
+                    <form method="GET">
+                        <label for="type" class="block text-sm font-medium text-gray-700 mb-1">Category</label>
+                        <select name="type" id="type" class="w-48 px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500" onchange="this.form.submit()">
+                            <option value="all" {% if selected_type == 'all' %}selected{% endif %}>All Types</option>
+                            {% for type in types %}
+                                <option value="{{ type.name }}" {% if selected_type == type.name %}selected{% endif %}>
+                                    {{ type.name }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </form>
+                
+                    <!-- Brand Filter -->
+                    <form method="GET">
+                        <label for="brand" class="block text-sm font-medium text-gray-700 mb-1">Brand</label>
+                        <select name="brand" id="brand" class="w-48 px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500" onchange="this.form.submit()">
+                            <option value="all" {% if selected_brand == 'all' %}selected{% endif %}>All Brands</option>
+                            {% for brand in brands %}
+                                <option value="{{ brand.name }}" {% if selected_brand == brand.name %}selected{% endif %}>
+                                    {{ brand.name }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </form>
+                
+                    <!-- Model Filter -->
+
+
+                    <form method="GET" class="p-4">
+                        <label for="model_range" class="block text-sm font-medium text-gray-700 mb-2">
+                            Select year Model
+                        </label>
+                    
+                        <input type="range" name="model" id="model_range" 
+                            min="2000" 
+                            max="2025" 
+                            step="1" 
+                            value="{{ selected_model|default:2000 }}" 
+                            class="w-full" 
+                            oninput="updateModel()">
+                    
+                        <div class="text-center text-sm text-gray-700 mt-2">
+                            Selected Year: <span id="model_value">{{ selected_model|default:2000 }}</span>
+                        </div>
+                    
+                        <button type="submit" class="mt-3 bg-blue-500 text-white px-4 py-2 rounded-lg">
+                            Apply
+                        </button>
+                    </form>
+
+
+
+
+                    <!-- price filter  -->
+
+                    <form method="GET" class="p-4">
+                        <label for="price_range" class="block text-sm font-medium text-gray-700 mb-2">Price Range</label>
+                        
+                        <input type="range" name="min_price" id="min_price" min="100000" max="5000000" step="10000" 
+                            value="{{ min_price }}" class="w-full" oninput="updatePrice()">
+                        <input type="range" name="max_price" id="max_price" min="100000" max="5000000" step="10000" 
+                            value="{{ max_price }}" class="w-full mt-2" oninput="updatePrice()">
+                    
+                        <div class="flex justify-between text-sm text-gray-700 mt-2">
+                            <span>Min: ₹<span id="min_price_value">{{ min_price }}</span></span>
+                            <span>Max: ₹<span id="max_price_value">{{ max_price }}</span></span>
+                        </div>
+                    
+                        <button type="submit" class="mt-3 bg-blue-500 text-white px-4 py-2 rounded-lg">Apply</button>
+                    </form>
+                </div>
+                
+
+
+                <!-- Content Body -->
+
+
+
+
+
+                <div class="container">
+                    <div class="row">
+
+                        
+                        
+                        
+                
+                        <!-- coloum  -->
+                
+                        {%for v in vehicles%}
+                
+                
+                        <div class="col-4">
+                
+                            <div class="relative m-10 flex w-full max-w-xs flex-col overflow-hidden rounded-3xl border border-black bg-white shadow-lg">
+                                <a class="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl" href="{% url 'vehicle_detail' v.id %}">
+                                  <img class="object-cover" src="{{v.image.url}}" alt="product image" />
+                                  <span class="absolute top-0 left-0 m-2 rounded-full bg-black px-2 text-center text-sm font-medium text-white">{{v.model.year}}</span>
+                                </a>
+                                <div class="mt-4 px-5 pb-5">
+                                  
+                                    <p class="text-xl tracking-tight text-slate-900">name: {{v.Vehicle_name}}</p>
+                                    <p class="text-xl tracking-tight text-slate-900">Brand: {{v.brand.name}}</p>
+
+
+                                  <div class=" my-2 flex items-center justify-between">
+                                    <p>
+                                      <span class="text-3xl font-bold text-slate-900">₹ {{v.price}}</span>
+                                    </p>
+                                 
+                                  </div>
+                                  <a href="{% url 'vehicle_detail' v.id %}" class="flex items-center justify-center rounded-md bg-slate-900 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300">
+                                      <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                                    </svg>
+                                    Details</a
+                                  >
+                                </div>
+                              </div>
+                
+                        </div>
+                        {%endfor%}
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+
+        <!-- Overlay -->
+        <div class="fixed inset-0 bg-black bg-opacity-50 hidden z-40" id="sidebar-overlay"></div>
+
+        <script>
+              function updateModel() {
+        let modelRange = document.getElementById("model_range");
+        let modelValue = document.getElementById("model_value");
+        modelValue.textContent = modelRange.value;
+    }
+        
+                function updatePrice() {
+        document.getElementById("min_price_value").textContent = document.getElementById("min_price").value;
+        document.getElementById("max_price_value").textContent = document.getElementById("max_price").value;
+    }
+
+            const sidebar = document.getElementById('sidebar');
+            const openSidebarButton = document.getElementById('open-sidebar');
+            const sidebarOverlay = document.getElementById('sidebar-overlay');
+
+            // Open Sidebar
+            openSidebarButton.addEventListener('click', () => {
+                sidebar.classList.remove('-translate-x-full');
+                sidebarOverlay.classList.remove('hidden');
+            });
+
+            // Close Sidebar
+            sidebarOverlay.addEventListener('click', () => {
+                sidebar.classList.add('-translate-x-full');
+                sidebarOverlay.classList.add('hidden');
+            });
+
+            // Close Sidebar when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!sidebar.contains(e.target) && !openSidebarButton.contains(e.target) && !sidebarOverlay.contains(e.target)) {
+                    sidebar.classList.add('-translate-x-full');
+                    sidebarOverlay.classList.add('hidden');
+                }
+            });
+        </script>
+    </div>
+
+
+
+
+    <script>
+        AOS.init();
+    </script>
+</body>
+
+</html>

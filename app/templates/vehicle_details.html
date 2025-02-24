@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- tailwind  -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- AOS  -->
+    <script>
+        AOS.init();
+    </script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+
+</head>
+<body>
+    <div class="flex bg-gray-200">
+        <!-- Sidebar -->
+        <div class="fixed top-0 left-0 bg-gray-700 text-white w-56 h-full overflow-y-auto transition-transform transform -translate-x-full ease-in-out duration-1000 z-50"
+            id="sidebar">
+            <!-- Sidebar Content -->
+            <div class="p-4">
+                <h1 class="text-2xl font-semibold" style="font-style: italic;">BigDeals</h1>
+
+                <hr>
+                <ul class="mt-4">
+                    <li class="mb-2"><a href="" class="block hover:text-indigo-400">Home</a>
+                    </li>
+                    <li class="mb-2"><a href="" class="block hover:text-indigo-400">Bookings</a>
+                    </li>
+                    
+                </ul>
+              
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div class="flex-1 flex flex-col overflow-hidden">
+
+
+            <!-- Navbar -->
+            <div class="bg-gray-800 text-white shadow">
+                <div class="container mx-auto">
+                    <div class="flex justify-between items-center py-4 px-2">
+                        <h1 class="text-xl font-semibold" style="font-style: italic;">BigDeals</h1>
+
+
+
+
+                     
+
+                        <!-- search box  -->
+
+
+
+                        <div class="flex justify-center">
+                            <div class="relative">
+                                <!-- Search Input -->
+                                <form action="">
+                                    <input type="text" name="search-text"
+                                        class="w-60 text-black px-4 py-2 border border-gray-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        placeholder="Search for Vehicles...">
+
+                                    <!-- Search Button -->
+                                    <button class="px-4 py-2 bg-blue-500 text-white rounded-r-lg hover:bg-blue-600">
+                                        Search
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+
+
+
+                        <button class="text-gray-500 hover:text-gray-600" id="open-sidebar">
+                            <svg class="w-12 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M4 6h16M4 12h16M4 18h16"></path>
+                            </svg>
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+   
+    <!-- details  -->
+    <div class="bg-white">
+        <div class="container mx-auto px-4 py-8">
+          <div class="flex flex-wrap -mx-4">
+            <!-- Product Images -->
+            <div class="w-full md:w-1/2 px-4 mb-8">
+              <img src="{{vehicle.image.url}}" alt="Product"
+                          class="w-full h-auto rounded-lg shadow-md mb-4" id="mainImage">
+              <div class="flex gap-4 py-4 justify-center overflow-x-auto">
+                <img src="https://images.unsplash.com/photo-1505751171710-1f6d0ace5a85?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHwxMnx8aGVhZHBob25lfGVufDB8MHx8fDE3MjEzMDM2OTB8MA&ixlib=rb-4.0.3&q=80&w=1080" alt="Thumbnail 1"
+                              class="size-16 sm:size-20 object-cover rounded-md cursor-pointer opacity-60 hover:opacity-100 transition duration-300"
+                              onclick="changeImage(this.src)">
+                <img src="https://images.unsplash.com/photo-1484704849700-f032a568e944?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHw0fHxoZWFkcGhvbmV8ZW58MHwwfHx8MTcyMTMwMzY5MHww&ixlib=rb-4.0.3&q=80&w=1080" alt="Thumbnail 2"
+                              class="size-16 sm:size-20 object-cover rounded-md cursor-pointer opacity-60 hover:opacity-100 transition duration-300"
+                              onclick="changeImage(this.src)">
+                <img src="https://images.unsplash.com/photo-1496957961599-e35b69ef5d7c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHw4fHxoZWFkcGhvbmV8ZW58MHwwfHx8MTcyMTMwMzY5MHww&ixlib=rb-4.0.3&q=80&w=1080" alt="Thumbnail 3"
+                              class="size-16 sm:size-20 object-cover rounded-md cursor-pointer opacity-60 hover:opacity-100 transition duration-300"
+                              onclick="changeImage(this.src)">
+                <img src="https://images.unsplash.com/photo-1528148343865-51218c4a13e6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHwzfHxoZWFkcGhvbmV8ZW58MHwwfHx8MTcyMTMwMzY5MHww&ixlib=rb-4.0.3&q=80&w=1080" alt="Thumbnail 4"
+                              class="size-16 sm:size-20 object-cover rounded-md cursor-pointer opacity-60 hover:opacity-100 transition duration-300"
+                              onclick="changeImage(this.src)">
+              </div>
+            </div>
+      
+            <!-- Product Details -->
+            <div class="w-full md:w-1/2 px-4">
+              <h2 class="text-3xl font-bold mb-2">{{vehicle.Vehicle_name}}</h2>
+              <p class="text-gray-600 mb-4">category: {{vehicle.category.name}}</p>
+              <div class="mb-4">
+                <span class="text-2xl font-bold mr-2">₹ {{vehicle.price}}</span>
+              </div>
+
+              <h2 class="text-gray-700 text-2xl" ><b>Brand: {{vehicle.brand.name}}</b></h2><br>
+
+      
+              <div>
+                <h3 class="text-lg font-semibold mb-2">More Details:</h3>
+                <ul class="list-disc list-inside text-gray-700">
+
+                  <li class="text-gray-700 ">Registered: {{vehicle.model.year}}</li>
+                  <li class="text-gray-700">year_of_manufacture: {{vehicle.year_of_manufacture}} </li>
+                  <li class="text-gray-700">kilometers driven: {{vehicle.kilometers_driven}} </li>
+                  <li class="text-gray-700">ownership_status: {{vehicle.ownership_status}} </li>
+
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <script>
+          function changeImage(src) {
+                  document.getElementById('mainImage').src = src;
+              }
+        </script>
+      </div>
+
+
+      
+
+
+
+    <script>
+        AOS.init();
+    </script>   
+</body>
+</html>
