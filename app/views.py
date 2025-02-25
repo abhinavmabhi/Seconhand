@@ -28,17 +28,22 @@ class VehicleListView(View):
         min_year_obj=VehicleModel.objects.order_by("year").first()
         max_year_obj=VehicleModel.objects.order_by("-year").first()
 
-        # ✅ Ensure min_year is at least 2000
-        min_year = max(2000, min_year_obj.year) if min_year_obj else 2000
+        owner_types = Vehicle.objects.values_list('ownership_status', flat=True).distinct()
 
-        # ✅ Ensure max_year does not exceed 2025
+        selected_ownertype = request.GET.get("owner_type", "all")
+
+
+        min_year = max(2000, min_year_obj.year) if min_year_obj else 2000
         max_year = min(2025, max_year_obj.year) if max_year_obj else 2025
 
-        # ✅ Generate year range from 2000 to 2025
         year_range = list(range(min_year, max_year + 1))
 
 
         qs = Vehicle.objects.all()
+
+        # ownership 
+        if selected_ownertype != "all":
+            qs = qs.filter(ownership_status=selected_ownertype)
 
         if selected_category !="all":
             qs = qs.filter(category__name=selected_category)
@@ -100,6 +105,10 @@ class VehicleListView(View):
             "year_range": year_range,
             "min_year": min_year,
             "max_year": max_year,
+
+            "selected_ownertype": selected_ownertype,
+            "owner_types": owner_types,  # Pass to template
+            
         })
     
 class vehicle_details_view(View):
